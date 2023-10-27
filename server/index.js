@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const PORT = 5000;
+const messageRoute = require("./routes/message");
+const roomRoute = require("./routes/room");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
@@ -15,7 +17,10 @@ mongoose
   });
 
 //ミドルウェア
+app.use(express.json());
+app.use("/api/message", messageRoute);
+app.use("/api/room", roomRoute);
 
 app.listen(PORT, () => {
-  console.log("server is running");
+  console.log("server is running on port 5000");
 });
