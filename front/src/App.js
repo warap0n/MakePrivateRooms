@@ -5,13 +5,15 @@ import Chat from "./pages/chat/Chat";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/:id" element={<Chat />} />
-      </Routes>
-    </Router>
+          <Route path="/:id" element={<Chat />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
