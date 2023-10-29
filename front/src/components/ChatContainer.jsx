@@ -21,8 +21,10 @@ const ChatContainer = () => {
 };
 
 const Container = styled.div`
+  margin-top: 50px;
+
   .chatContainer {
-    margin-top: 15px;
+    padding: 20px 10px;
     display: flex;
   }
   .showIp {
