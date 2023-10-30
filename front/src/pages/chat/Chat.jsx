@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import TopBar from "../../components/TopBar";
 import ChatContainer from "../../components/ChatContainer";
@@ -7,12 +7,13 @@ import SendFormContainer from "../../components/SendFormContainer";
 
 const Chat = ({ someProp }) => {
   let { id } = useParams();
+  const [messages, setMessages] = useState([]);
   return (
     <>
       <Container>
         <TopBar roomName={"roomName"} />
-        <ChatContainer />
-        <SendFormContainer />
+        <ChatContainer messages={messages} setMessages={setMessages} />
+        <SendFormContainer setMessages={setMessages} />
       </Container>
     </>
   );

@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import dummyData from "./dummyData.json";
 
-const ChatContainer = () => {
+const ChatContainer = ({ messages, setMessages }) => {
+  useEffect(() => {
+    setMessages(dummyData);
+  }, []);
   return (
     <Container>
-      {dummyData.map((data, index) => (
+      {messages.map((data, index) => (
         <div className="chatContainer" key={index}>
           <div className="showIp">
             <div className="ip">{data.senderIp}</div>{" "}
             <div className="symbol">&gt;</div>
           </div>
-          <div className="message">
-            {data.message}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdf
-          </div>
+          <div className="message">{data.message}</div>
         </div>
       ))}
     </Container>
