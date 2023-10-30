@@ -33,11 +33,12 @@ io.on("connection", (socket) => {
 
   // チャットメッセージを受信
   socket.on("chatMessage", async (data) => {
-    const { text, roomId, sender } = data;
+    const { message, roomId, senderIp } = data;
 
     // メッセージをデータベースに保存
-    const newMessage = new Message({ text, roomId, sender });
-    await newMessage.save();
+    // const newMessage = new Message({ text, roomId, sender });
+    // await newMessage.save();
+    const newMessage = { message, roomId, senderIp };
 
     // メッセージをルームの参加者に送信
     socket.to(roomId).emit("chatMessage", newMessage);
