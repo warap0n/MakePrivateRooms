@@ -4,7 +4,7 @@ import { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import { TextareaAutosize } from "@mui/material";
 
-const SendFormContainer = ({ setMessages }) => {
+const SendFormContainer = ({ setMessages, sendMessage }) => {
   const ref = useRef("");
 
   const handleSubmit = (e) => {
@@ -17,6 +17,7 @@ const SendFormContainer = ({ setMessages }) => {
         senderIp: "125.198.20.1",
       },
     ]);
+    sendMessage(ref.current.value);
   };
 
   return (
