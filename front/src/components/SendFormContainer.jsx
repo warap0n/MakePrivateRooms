@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
@@ -6,7 +5,7 @@ import { TextareaAutosize } from "@mui/material";
 import { useUserInfoContext } from "./UserInfoProvider";
 
 const SendFormContainer = ({ setMessages, sendMessage }) => {
-  const ref = useRef("");
+  const [message, setMessage] = useState("");
   const { roomId, senderIp } = useUserInfoContext();
 
   const handleSubmit = (e) => {
@@ -14,20 +13,23 @@ const SendFormContainer = ({ setMessages, sendMessage }) => {
     setMessages((prevMessages) => [
       ...prevMessages,
       {
-        message: ref.current.value,
+        message: message,
         roomId,
         senderIp,
       },
     ]);
-    sendMessage(ref.current.value);
-    // ref.current.value = "";
+    sendMessage(message);
+    setMessage("");
   };
 
   return (
     <Container>
       <form onSubmit={handleSubmit}>
         <div className="input">
-          <TextareaAutosize ref={ref} />
+          <TextareaAutosize
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
         </div>
         <div className="button">
           <button type="submit">
