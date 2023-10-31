@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { UserInfoContext, useUserInfoContext } from "./UserInfoProvider";
 
-const TopBar = ({ roomName }) => {
+const TopBar = () => {
+  const { roomName } = useUserInfoContext();
   return (
     <Container>
       <div className="topbar">{roomName}</div>

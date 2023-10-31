@@ -13,4 +13,14 @@ router.post("/", async (req, res) => {
   }
 });
 
+//roomNameを取得
+router.get("/:id", async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.id);
+    return res.status(200).json(room);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;

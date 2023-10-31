@@ -6,11 +6,13 @@ import styled from "styled-components";
 import SendFormContainer from "../../components/SendFormContainer";
 import socket from "../../SocketIO";
 import { UserInfoProvider } from "../../components/UserInfoProvider";
+import axios from "axios";
 
 const Chat = ({ someProp }) => {
   const { roomId } = useParams();
   const [messages, setMessages] = useState([]);
   const [senderIp, setSenderIp] = useState();
+  const [roomName, setRoomName] = useState("");
 
   const sendMessage = (message) => {
     socket.emit("chatMessage", {
@@ -20,7 +22,7 @@ const Chat = ({ someProp }) => {
     });
   };
 
-  //senderIp, roomId取得
+  //senderIp, roomName取得
   useEffect(() => {
     const getIp = async () => {
       // fetchを使ってipapi.coに接続
@@ -30,6 +32,15 @@ const Chat = ({ someProp }) => {
       setSenderIp(data.ip);
     };
     getIp();
+    const getRoomName = async () => {
+      try {
+        const response = await axios.get(`room/${roomId}`);
+        setRoomName(response.data.roomName);
+      } catch (err) {
+        console.log();
+      }
+    };
+    getRoomName();
   }, []);
 
   //socket
@@ -50,9 +61,9 @@ const Chat = ({ someProp }) => {
 
   return (
     <>
-      <UserInfoProvider senderIp={senderIp} roomId={roomId}>
+      <UserInfoProvider senderIp={senderIp} roomId={roomId} roomName={roomName}>
         <Container>
-          <TopBar roomName={"roomName"} />
+          <TopBar />
           <ChatContainer messages={messages} setMessages={setMessages} />
           <SendFormContainer
             setMessages={setMessages}
