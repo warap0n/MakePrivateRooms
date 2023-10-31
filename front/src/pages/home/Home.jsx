@@ -7,7 +7,7 @@ const Home = () => {
       <h2>Oops!</h2>
       <div className="sentences">
         <p>Trying to access a non-existent URL, huh?</p>
-        <p>If you want to create a new room, click the button below!"</p>
+        <p>If you want to create a new room, click the button below!</p>
       </div>
       <button>Get started</button>
     </Container>
