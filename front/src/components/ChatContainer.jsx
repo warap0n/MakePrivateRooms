@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import dummyData from "./dummyData.json";
 import axios from "axios";
@@ -7,8 +7,11 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const ChatContainer = ({ messages, setMessages }) => {
   const { roomId, roomName } = useUserInfoContext();
+  const containerRef = useRef(null);
   const navigate = useNavigate();
-  console.log(messages);
+  const scrollToBottom = () => {
+    containerRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   //apiからmessagesを取得
   useEffect(() => {
     const fetchMessages = async () => {
@@ -23,6 +26,11 @@ const ChatContainer = ({ messages, setMessages }) => {
     };
     fetchMessages();
   }, []);
+  //scroll
+  useEffect(() => {
+    // メッセージが追加された場合にスクロールを下に移動
+    scrollToBottom();
+  }, [messages]);
   return (
     <Container>
       {messages.length === 0 ? (
@@ -34,7 +42,7 @@ const ChatContainer = ({ messages, setMessages }) => {
         ""
       )}
       {messages.map((data, index) => (
-        <div className="chatContainer" key={index}>
+        <div className="chatContainer" key={index} ref={containerRef}>
           <div className="showIp">
             <div className="ip">{data.senderIp}</div>{" "}
             <div className="symbol">&gt;</div>
