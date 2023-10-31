@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import dummyData from "./dummyData.json";
+import axios from "axios";
 
 const ChatContainer = ({ messages, setMessages }) => {
+  //apiからmessagesを取得
+
   useEffect(() => {
-    setMessages(dummyData);
+    const fetchMessages = async () => {
+      const response = await axios.get(
+        `http://localhost:5000/api/message/653bf165cb7795d9daed5674`
+      );
+      console.log(response.data);
+      setMessages(response.data);
+    };
+    fetchMessages();
   }, []);
   return (
     <Container>
