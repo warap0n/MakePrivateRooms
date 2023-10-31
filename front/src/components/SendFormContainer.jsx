@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import { TextareaAutosize } from "@mui/material";
+import { useUserInfoContext } from "./UserInfoProvider";
 
 const SendFormContainer = ({ setMessages, sendMessage }) => {
   const ref = useRef("");
+  const { roomId, senderIp } = useUserInfoContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,11 +15,12 @@ const SendFormContainer = ({ setMessages, sendMessage }) => {
       ...prevMessages,
       {
         message: ref.current.value,
-        roomId: "653bf165cb7795d9daed5674",
-        senderIp: "125.555.111.22",
+        roomId,
+        senderIp,
       },
     ]);
     sendMessage(ref.current.value);
+    // ref.current.value = "";
   };
 
   return (
