@@ -6,9 +6,9 @@ import { useUserInfoContext } from "./UserInfoProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const ChatContainer = ({ messages, setMessages }) => {
-  const { roomId } = useUserInfoContext();
+  const { roomId, roomName } = useUserInfoContext();
   const navigate = useNavigate();
-
+  console.log(messages);
   //apiからmessagesを取得
   useEffect(() => {
     const fetchMessages = async () => {
@@ -25,6 +25,14 @@ const ChatContainer = ({ messages, setMessages }) => {
   }, []);
   return (
     <Container>
+      {messages.length === 0 ? (
+        <div className="initial">
+          <h2>Welcome to {roomName} !</h2>
+          <p>you can send a message here</p>
+        </div>
+      ) : (
+        ""
+      )}
       {messages.map((data, index) => (
         <div className="chatContainer" key={index}>
           <div className="showIp">
@@ -40,10 +48,23 @@ const ChatContainer = ({ messages, setMessages }) => {
 
 const Container = styled.div`
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
   @media screen and (min-width: 720px) {
     padding-left: 20px;
     padding-top: 10px;
+  }
+
+  .initial {
+    margin-top: 100px;
+    color: #8e8d8d;
+    text-align: center;
+
+    h2 {
+      font-size: 30px;
+    }
+    p {
+      margin-top: 20px;
+    }
   }
 
   .chatContainer {
