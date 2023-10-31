@@ -57,6 +57,10 @@ const Container = styled.div`
     justify-content: center;
   }
 
+  .input {
+    background-color: #535353;
+  }
+
   textarea {
     width: 230px;
     height: 30px;
@@ -66,6 +70,7 @@ const Container = styled.div`
     border: none;
     resize: none;
     font-size: 18px;
+    background-color: white;
 
     &:focus {
       outline: none;
@@ -75,6 +80,15 @@ const Container = styled.div`
     background: none;
     border: none;
     cursor: pointer;
+    background-color: #535353;
+  }
+  .css-i4bv87-MuiSvgIcon-root {
+    background-color: #535353;
+    color: #08ce08;
+
+    &:hover {
+      color: #069506;
+    }
   }
 
   @media screen and (min-width: 720px) {

@@ -22,6 +22,8 @@ const Container = styled.div`
     text-align: center;
     color: white;
     font-size: 20px;
+    background-color: #282563;
+    padding-top: 3px;
   }
 `;
 

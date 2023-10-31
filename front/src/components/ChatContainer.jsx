@@ -40,6 +40,7 @@ const ChatContainer = ({ messages, setMessages }) => {
 
 const Container = styled.div`
   margin-top: 50px;
+  margin-bottom: 50px;
   @media screen and (min-width: 720px) {
     padding-left: 20px;
     padding-top: 10px;
