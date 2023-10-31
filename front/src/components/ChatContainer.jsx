@@ -2,17 +2,24 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import dummyData from "./dummyData.json";
 import axios from "axios";
+import { useUserInfoContext } from "./UserInfoProvider";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ChatContainer = ({ messages, setMessages }) => {
-  //apiからmessagesを取得
+  const { roomId } = useUserInfoContext();
+  const navigate = useNavigate();
 
+  //apiからmessagesを取得
   useEffect(() => {
     const fetchMessages = async () => {
-      const response = await axios.get(
-        `http://localhost:5000/api/message/653bf165cb7795d9daed5674`
-      );
-      console.log(response.data);
-      setMessages(response.data);
+      try {
+        const response = await axios.get(`message/${roomId}`);
+        console.log(response.data);
+        setMessages(response.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
     };
     fetchMessages();
   }, []);
@@ -33,9 +40,13 @@ const ChatContainer = ({ messages, setMessages }) => {
 
 const Container = styled.div`
   margin-top: 50px;
+  @media screen and (min-width: 720px) {
+    padding-left: 20px;
+    padding-top: 10px;
+  }
 
   .chatContainer {
-    padding: 20px 10px;
+    padding: 15px 10px;
     display: flex;
   }
   .showIp {
@@ -44,11 +55,31 @@ const Container = styled.div`
     /* font-size: 14px; */
   }
 
+  .ip {
+    font-size: 15px;
+    margin-top: 3px;
+    margin-right: 3px;
+    @media screen and (min-width: 720px) {
+      margin-right: 5px;
+      font-size: 20px;
+    }
+  }
+
+  .symbol {
+    margin-top: 1px;
+    @media screen and (min-width: 720px) {
+      margin-top: 4px;
+    }
+  }
+
   .message {
     min-width: 1px;
     word-wrap: break-word;
     color: white;
     margin-left: 5px;
+    @media screen and (min-width: 720px) {
+      margin-top: 4px;
+    }
   }
 `;
 

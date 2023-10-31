@@ -3,23 +3,27 @@ import { useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import { TextareaAutosize } from "@mui/material";
 import { useUserInfoContext } from "./UserInfoProvider";
+import axios from "axios";
 
 const SendFormContainer = ({ setMessages, sendMessage }) => {
   const [message, setMessage] = useState("");
   const { roomId, senderIp } = useUserInfoContext();
 
+  const postMessage = async (data) => {
+    await axios.post(`message`, data);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        message: message,
-        roomId,
-        senderIp,
-      },
-    ]);
+    const sendingData = {
+      message: message,
+      roomId,
+      senderIp,
+    };
+    setMessages((prevMessages) => [...prevMessages, sendingData]);
     sendMessage(message);
     setMessage("");
+    postMessage(sendingData);
   };
 
   return (
@@ -54,14 +58,14 @@ const Container = styled.div`
   }
 
   textarea {
-    width: 180px;
+    width: 230px;
     height: 30px;
     padding: 5px 10px;
     border-radius: 30px;
     margin-right: 10px;
     border: none;
     resize: none;
-    font-size: 20px;
+    font-size: 18px;
 
     &:focus {
       outline: none;
