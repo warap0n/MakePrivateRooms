@@ -8,7 +8,6 @@ const MessageSchema = new mongoose.Schema(
     },
     roomId: {
       type: String,
-      unique: true,
       required: true,
     },
     senderIp: {
