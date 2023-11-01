@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import dummyData from "./dummyData.json";
 import axios from "axios";
 import { useUserInfoContext } from "./UserInfoProvider";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -17,7 +16,7 @@ const ChatContainer = ({ messages, setMessages }) => {
     const fetchMessages = async () => {
       try {
         const response = await axios.get(`message/${roomId}`);
-        console.log(response.data);
+
         setMessages(response.data);
       } catch (err) {
         console.log(err);

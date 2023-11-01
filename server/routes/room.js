@@ -33,11 +33,8 @@ router.post("/", async (req, res) => {
 router.get("/:roomId", async (req, res) => {
   try {
     const room = await Room.findOne({ roomId: req.params.roomId }); // roomUrlを使って検索
-    if (room) {
-      return res.status(200).json(room);
-    } else {
-      return res.status(404).json({ message: "Room not found" });
-    }
+
+    return res.status(200).json(room);
   } catch (err) {
     return res.status(500).json(err);
   }
