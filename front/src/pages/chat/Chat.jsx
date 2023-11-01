@@ -36,7 +36,7 @@ const Chat = ({ someProp }) => {
         setSenderIp(data.ip);
       } catch (err) {
         console.log(err);
-        navigate("/");
+        navigate("/error");
       }
     };
     getIp();
@@ -44,7 +44,7 @@ const Chat = ({ someProp }) => {
       try {
         const response = await axios.get(`room?roomId=${roomId}`);
         if (!response.data) {
-          navigate("/");
+          navigate("/error");
         }
         console.log(response);
         setRoomName(response.data.roomName);

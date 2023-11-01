@@ -21,7 +21,7 @@ const ChatContainer = ({ messages, setMessages }) => {
       } catch (err) {
         //おそらくここには到達しない
         console.log(err);
-        navigate("/");
+        navigate("/error");
       }
     };
     fetchMessages();
