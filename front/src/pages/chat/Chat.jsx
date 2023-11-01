@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import TopBar from "../../components/TopBar";
 import ChatContainer from "../../components/ChatContainer";
 import styled from "styled-components";
@@ -9,7 +9,10 @@ import { UserInfoProvider } from "../../components/UserInfoProvider";
 import axios from "axios";
 
 const Chat = ({ someProp }) => {
-  const { roomId } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const roomId = searchParams.get("roomId");
+  console.log(roomId);
   const [messages, setMessages] = useState([]);
   const [senderIp, setSenderIp] = useState();
   const [roomName, setRoomName] = useState("");
@@ -35,7 +38,7 @@ const Chat = ({ someProp }) => {
     getIp();
     const getRoomName = async () => {
       try {
-        const response = await axios.get(`room/${roomId}`);
+        const response = await axios.get(`room?roomId=${roomId}`);
         if (!response.data) {
           navigate("/");
         }
@@ -47,8 +50,6 @@ const Chat = ({ someProp }) => {
     };
     getRoomName();
   }, []);
-
-  useEffect(() => {}, [roomName]);
 
   //socket
   useEffect(() => {

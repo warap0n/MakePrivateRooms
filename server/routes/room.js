@@ -30,9 +30,9 @@ router.post("/", async (req, res) => {
 });
 
 //roomNameを取得
-router.get("/:roomId", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const room = await Room.findOne({ roomId: req.params.roomId }); // roomUrlを使って検索
+    const room = await Room.findOne({ roomId: req.query.roomId }); // roomUrlを使って検索
 
     return res.status(200).json(room);
   } catch (err) {

@@ -15,10 +15,11 @@ const ChatContainer = ({ messages, setMessages }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`message/${roomId}`);
+        const response = await axios.get(`message?roomId=${roomId}`);
 
         setMessages(response.data);
       } catch (err) {
+        //おそらくここには到達しない
         console.log(err);
         navigate("/");
       }
