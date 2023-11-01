@@ -19,10 +19,10 @@ router.post("/", async (req, res) => {
 });
 
 //メッセージを読み込む
-router.get("/:id", async (req, res) => {
+router.get("/:roomId", async (req, res) => {
   try {
     const messages = await Message.find({
-      roomId: req.params.id,
+      roomId: req.params.roomId,
     });
     return res.status(200).json(messages);
   } catch (err) {
