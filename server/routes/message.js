@@ -20,9 +20,23 @@ router.post("/", async (req, res) => {
 
 //メッセージを読み込む
 router.get("/", async (req, res) => {
+  // senderIpを匿名化する関数
+  const anonymizeIP = (ip) => {
+    // IPアドレスを分割
+    const parts = ip.split(".");
+
+    parts[3] = "**";
+
+    // マスキングされたIPを結合して返す
+    return parts.join(".");
+  };
   try {
     const messages = await Message.find({
       roomId: req.query.roomId,
+    });
+    // senderIpを匿名化
+    messages.forEach((message) => {
+      message.senderIp = anonymizeIP(message.senderIp);
     });
     return res.status(200).json(messages);
   } catch (err) {

@@ -30,10 +30,14 @@ const Chat = ({ someProp }) => {
   useEffect(() => {
     const getIp = async () => {
       // fetchを使ってipapi.coに接続
-      const response = await fetch("https://ipapi.co/json/");
-      const data = await response.json();
-      // 取得したIPアドレスを、定数`ip`にセット
-      setSenderIp(data.ip);
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        setSenderIp(data.ip);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
     };
     getIp();
     const getRoomName = async () => {

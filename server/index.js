@@ -37,15 +37,22 @@ io.on("connection", (socket) => {
 
   // チャットメッセージを受信
   socket.on("chatMessage", async (data) => {
-    const { message, roomId, senderIp } = data;
+    // senderIpを匿名化する関数
+    const anonymizeIP = (ip) => {
+      // IPアドレスを分割
+      const parts = ip.split(".");
 
-    // メッセージをデータベースに保存
-    // const newMessage = new Message({ text, roomId, sender });
-    // await newMessage.save();
+      parts[3] = "**";
+
+      // マスキングされたIPを結合して返す
+      return parts.join(".");
+    };
+    let { message, roomId, senderIp } = data;
+    senderIp = anonymizeIP(senderIp);
     const newMessage = { message, roomId, senderIp };
 
     // メッセージをルームの参加者に送信
-    socket.to(roomId).emit("chatMessage", newMessage);
+    io.to(roomId).emit("chatMessage", newMessage);
   });
 
   // ルームに参加

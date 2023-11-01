@@ -20,7 +20,7 @@ const SendFormContainer = ({ setMessages, sendMessage }) => {
       roomId,
       senderIp,
     };
-    setMessages((prevMessages) => [...prevMessages, sendingData]);
+    // setMessages((prevMessages) => [...prevMessages, sendingData]);
     sendMessage(message);
     setMessage("");
     postMessage(sendingData);

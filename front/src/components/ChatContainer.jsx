@@ -5,7 +5,7 @@ import { useUserInfoContext } from "./UserInfoProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const ChatContainer = ({ messages, setMessages }) => {
-  const { roomId, roomName } = useUserInfoContext();
+  const { roomId, roomName, senderIp } = useUserInfoContext();
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const scrollToBottom = () => {
@@ -50,6 +50,12 @@ const ChatContainer = ({ messages, setMessages }) => {
           <div className="message">{data.message}</div>
         </div>
       ))}
+      <div className="chatContainer blink">
+        <div className="showIp">
+          <div className="ip">{senderIp}</div>{" "}
+          <div className="symbol">&gt;</div>
+        </div>
+      </div>
     </Container>
   );
 };
@@ -83,6 +89,21 @@ const Container = styled.div`
     display: flex;
     color: #09f409;
     /* font-size: 14px; */
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .chatContainer.blink {
+    animation: blink 2s infinite; /* 1秒ごとに点滅 */
   }
 
   .ip {
