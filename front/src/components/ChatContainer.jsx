@@ -39,17 +39,19 @@ const ChatContainer = ({ messages, setMessages }) => {
           <p>you can send a message here</p>
         </div>
       ) : (
-        ""
+        <>
+          {messages.map((data, index) => (
+            <div className="chatContainer" key={index} ref={containerRef}>
+              <div className="showIp">
+                <div className="ip">{data.senderIp}</div>{" "}
+                <div className="symbol">&gt;</div>
+              </div>
+              <div className="message">{data.message}</div>
+            </div>
+          ))}
+        </>
       )}
-      {messages.map((data, index) => (
-        <div className="chatContainer" key={index} ref={containerRef}>
-          <div className="showIp">
-            <div className="ip">{data.senderIp}</div>{" "}
-            <div className="symbol">&gt;</div>
-          </div>
-          <div className="message">{data.message}</div>
-        </div>
-      ))}
+
       <div className="chatContainer blink">
         <div className="showIp">
           <div className="ip">{senderIp}</div>{" "}

@@ -12,7 +12,7 @@ const CreateRoom = ({ created, setCreated }) => {
       return;
     }
     try {
-      const response = await axios.post(`/room`, { roomName: roomName });
+      const response = await axios.post(`/api/room`, { roomName: roomName });
       const roomId = response.data.roomId;
       console.log(roomId);
 
