@@ -16,9 +16,17 @@ router.post("/", async (req, res) => {
     return getRandomString(length - 1, result + chars[randomIndex]);
   };
   const roomId = getRandomString(20) + new Date().getTime();
+  const roomName = req.body.roomName;
+  // 既存のルームを検索
+  const existingRoom = await Room.findOne({ roomName: roomName });
+
+  if (existingRoom) {
+    // すでに同じ名前のルームが存在する場合
+    return res.status(400).json({ error: "The room name already exists." });
+  }
   const newRoom = new Room({
     roomId: roomId,
-    roomName: req.body.roomName,
+    roomName: roomName,
   });
 
   try {
