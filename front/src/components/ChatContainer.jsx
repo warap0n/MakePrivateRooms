@@ -15,7 +15,9 @@ const ChatContainer = ({ messages, setMessages }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`message?roomId=${roomId}`);
+        const response = await axios.get(
+          `https://make-private-rooms-server-849c15b38d63.herokuapp.com/api/message?roomId=${roomId}`
+        );
 
         setMessages(response.data);
       } catch (err) {

@@ -12,11 +12,16 @@ const CreateRoom = ({ created, setCreated }) => {
       return;
     }
     try {
-      const response = await axios.post(`/api/room`, { roomName: roomName });
+      const response = await axios.post(
+        `https://make-private-rooms-server-849c15b38d63.herokuapp.com/api/room`,
+        { roomName: roomName }
+      );
       const roomId = response.data.roomId;
       console.log(roomId);
 
-      setUrl(`http://warap0n.com:53681/chat?roomId=${roomId}`);
+      setUrl(
+        `https://make-private-rooms-server-849c15b38d63.herokuapp.com/chat?roomId=${roomId}`
+      );
     } catch (err) {
       console.log(err);
       setDuplicate(true);

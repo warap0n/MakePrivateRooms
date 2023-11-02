@@ -42,7 +42,9 @@ const Chat = ({ someProp }) => {
     getIp();
     const getRoomName = async () => {
       try {
-        const response = await axios.get(`room?roomId=${roomId}`);
+        const response = await axios.get(
+          `https://make-private-rooms-server-849c15b38d63.herokuapp.com/api/room?roomId=${roomId}`
+        );
         if (!response.data) {
           navigate("/error");
         }

@@ -1,6 +1,8 @@
 import socketIOClient from "socket.io-client";
 
-const socket = socketIOClient("http://warap0n.com:53681/api");
+const socket = socketIOClient(
+  "https://make-private-rooms-server-849c15b38d63.herokuapp.com"
+);
 
 socket.on("disconnect", () => {
   console.log("Disconnected from the server.");

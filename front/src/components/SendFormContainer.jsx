@@ -10,7 +10,10 @@ const SendFormContainer = ({ setMessages, sendMessage }) => {
   const { roomId, senderIp } = useUserInfoContext();
 
   const postMessage = async (data) => {
-    await axios.post(`message`, data);
+    await axios.post(
+      `https://make-private-rooms-server-849c15b38d63.herokuapp.com/api/message`,
+      data
+    );
   };
 
   const handleSubmit = (e) => {
