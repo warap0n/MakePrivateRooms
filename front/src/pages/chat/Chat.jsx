@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import TopBar from "../../components/TopBar";
 import ChatContainer from "../../components/ChatContainer";
 import styled from "styled-components";

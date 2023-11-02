@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { UserInfoContext, useUserInfoContext } from "./UserInfoProvider";
+import { useUserInfoContext } from "./UserInfoProvider";
 
 const TopBar = () => {
   const { roomName } = useUserInfoContext();

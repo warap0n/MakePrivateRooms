@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useUserInfoContext } from "./UserInfoProvider";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ChatContainer = ({ messages, setMessages }) => {
   const { roomId, roomName, senderIp } = useUserInfoContext();

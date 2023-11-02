@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useEffect } from "react";
 import Error from "./pages/error/Error";
 import Chat from "./pages/chat/Chat";
 import Home from "./pages/home/Home";

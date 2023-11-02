@@ -1,6 +1,6 @@
 import socketIOClient from "socket.io-client";
 
-const socket = socketIOClient("http://warap0n.com:53681");
+const socket = socketIOClient("http://warap0n.com:53681/api");
 
 socket.on("disconnect", () => {
   console.log("Disconnected from the server.");
