@@ -16,7 +16,7 @@ const CreateRoom = ({ created, setCreated }) => {
       const roomId = response.data.roomId;
       console.log(roomId);
 
-      setUrl(`http://localhost:3000/chat?roomId=${roomId}`);
+      setUrl(`http://warap0n.com:53681/chat?roomId=${roomId}`);
     } catch (err) {
       console.log(err);
       setDuplicate(true);
@@ -32,10 +32,7 @@ const CreateRoom = ({ created, setCreated }) => {
           <h2>Success</h2>
           <p className="url">URL</p>
           <p>{url}</p>
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?data=イケてないコード&size=100x100"
-            alt="QRコード"
-          />
+          <img src={url} alt="QRコード" />
           <p className="share">
             Let's share this link or QR code with those you want to invite!
           </p>
