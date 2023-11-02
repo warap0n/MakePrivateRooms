@@ -16,7 +16,7 @@ const CreateRoom = ({ created, setCreated }) => {
       const roomId = response.data.roomId;
       console.log(roomId);
 
-      setUrl(`http://localhost:3000/chat/${roomId}`);
+      setUrl(`http://localhost:3000/chat?roomId=${roomId}`);
     } catch (err) {
       console.log(err);
       setDuplicate(true);
