@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useState } from "react";
 import styled from "styled-components";
 import CreateRoom from "../../components/CreateRoom";
@@ -6,7 +5,6 @@ import CreateRoom from "../../components/CreateRoom";
 const Home = () => {
   const [clicked, setClicked] = useState(false);
   const [created, setCreated] = useState(false);
-  const createRoom = () => {};
   const clickHandler = () => {
     setClicked(true);
   };
@@ -66,7 +64,7 @@ const Container = styled.div`
       color: #a2a2a2;
     }
   }
-  @media screen and (min-height: 600px) and (min-width: 600px) {
+  @media screen and (min-height: 600px) and (min-width: 720px) {
     h1 {
       font-size: 80px;
     }

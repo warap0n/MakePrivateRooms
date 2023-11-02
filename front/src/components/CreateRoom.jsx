@@ -30,12 +30,15 @@ const CreateRoom = ({ created, setCreated }) => {
       {created ? (
         <div className="responseContainer">
           <h2>Success</h2>
-          <p>URL</p>
+          <p className="url">URL</p>
           <p>{url}</p>
           <img
             src="https://api.qrserver.com/v1/create-qr-code/?data=イケてないコード&size=100x100"
             alt="QRコード"
           />
+          <p className="share">
+            Let's share this link or QR code with those you want to invite!
+          </p>
         </div>
       ) : (
         <>
@@ -107,22 +110,32 @@ const Container = styled.div`
       margin-bottom: 30px;
     }
     p {
-      width: 250px;
+      width: 280px;
       min-width: 1px;
       overflow-wrap: break-word;
+    }
+
+    .url {
+      color: #09f409;
     }
 
     img {
       margin-top: 50px;
     }
 
-    @media screen and (min-height: 600px) and (min-width: 600px) {
+    .share {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    @media screen and (min-height: 600px) and (min-width: 720px) {
       margin-top: 0;
       h2 {
         font-size: 80px;
       }
       p {
         width: 100%;
+        font-size: 30px;
       }
     }
   }

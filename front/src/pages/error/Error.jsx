@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Error = () => {
+  const navigate = useNavigate();
+  const clickHandler = () => {
+    navigate("/");
+  };
   return (
     <Container>
       <h2>Oops!</h2>
@@ -9,7 +14,7 @@ const Error = () => {
         <p>Trying to access a non-existent URL, huh?</p>
         <p>If you want to create a new room, click the button below!</p>
       </div>
-      <button>Get started</button>
+      <button onClick={clickHandler}>Get started</button>
     </Container>
   );
 };
